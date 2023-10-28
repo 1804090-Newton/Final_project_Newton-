@@ -1,0 +1,56 @@
+<div *ngIf="cart.length===0" class="flex justify-center items-center space-x-10 p-20">
+    <div>
+        <h2>Grand Total: {{total | currency: 'USD': 'symbol'}}</h2>
+        <h2>Your cart is empty !!!</h2>
+        <a routerLink="/dashboard" class="text-blue-500 hover:text-blue-700">Go to shopping</a>
+    </div>
+</div>
+<div *ngIf="cart.length!==0" class="overflow-x-auto relative shadow-md sm:rounded-lg w-[50rem] m-20 p-2">
+    <h2>Grand Total: {{total | currency: 'USD': 'symbol'}}</h2>
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="py-3 px-6 text-lg">
+                    Product Preview
+                </th>
+                <th scope="col" class="py-3 px-6 text-lg">
+                    Product name
+                </th>
+                <th scope="col" class="py-3 px-6 text-lg">
+                    Price
+                </th>
+
+                <th scope="col" class="py-3 px-6 text-lg">
+                    Amount
+                </th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of cart">
+            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                <td class="py-4 px-6">
+                    <img src={{item.product.imageURL}} height="60" width="70" alt="">
+                </td>
+                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{item.product.productName}}
+                </th>
+                <td class="py-4 px-6">
+                    {{item.product.price*item.quantity | currency: 'USD': 'symbol'}}
+                </td>
+
+                <td>
+                    <div class="flex justify-center items-center space-x-2">
+                        <button (click)="dec(item)" class="bg-blue-500 hover:bg-blue-700 text-white rounded-full p-2">
+                            <mat-icon>arrow_backward</mat-icon>
+                        </button>
+                        <p class="py-2 px-2">
+                            {{item.quantity}}
+                        </p>
+                        <button (click)="inc(item)" class="bg-blue-500 hover:bg-blue-700 text-white rounded-full p-2">
+                            <mat-icon>arrow_forward</mat-icon>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

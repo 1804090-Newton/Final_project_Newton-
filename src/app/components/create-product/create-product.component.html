@@ -1,0 +1,68 @@
+<div class="flex justify-center items-center p-10">
+    <form [formGroup]="form" class="w-[40rem] bg-blue-400 p-4 rounded-md space-y-8">
+    <div class="mb-6">
+        <label for="Product name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product name</label>
+        <input formControlName="productName" type="text" id="name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required>
+    </div>
+    <div class="mb-6">
+        <label for="Product short code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Short code</label>
+        <input  formControlName="productShortCode" type="text" id="productShortCode"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required>
+    </div>
+    <div class="mb-6">
+        <label for="Product price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Price</label>
+        <input formControlName="price" type="number" id="price"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required>
+    </div>
+    <div class="mb-6">
+        <label for="Product description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product description</label>
+        <input formControlName="description" type="textarea" id="description" name="description"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required>
+    </div>
+    <div class="mb-6">
+        <label for="Product origin" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product category</label>
+        <select formControlName="category" class="w-[38rem] p-3 rounded-md cursor-pointer">
+            <option *ngFor="let cat of categories" [value]="cat" [innerHTML]="cat">
+            </option>
+        </select>
+    </div>
+    <div class="mb-6">
+        <label for="Product origin" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Origin</label>
+        <select formControlName="origin" class="w-[38rem] p-3 rounded-md cursor-pointer">
+            <option *ngFor="let org of origin" [value]="org" [innerHTML]="org">
+            </option>
+        </select>
+    </div>
+    <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Image URL</label>
+        <input formControlName="imageURL"
+            class="block w-full p-2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+            aria-describedby="user_avatar_help" id="user_avatar" type="text">
+    </div>
+    <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Is Best</label>
+        <select formControlName="isBest" formControlName="isBest" class="w-[38rem] p-3 rounded-md cursor-pointer">
+            <option [value]="true" [innerHTML]="true">
+                <option [value]="false" [innerHTML]="false">
+        </select>
+    </div>
+    <div class="flex-col justify-center items-center">
+        <div *ngIf="message===1">
+            <p class="text-red-500">Product created successfully</p>
+            <a routerLink="/">
+                <button class="bg-blue-100 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                    Go to product list
+                </button>
+            </a>
+        </div><br />
+        <button (click)="onSubmit()" type="submit" class="bg-blue-100 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+            Submit
+        </button>
+    </div>
+    </form>
+</div>

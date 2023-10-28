@@ -1,0 +1,124 @@
+<div class="p-10 space-y-10">
+    <div class="flex justify-center items-center" *ngIf="!data">
+        <img src="../../assets/images/loader.gif" alt="An animated image">
+    </div>
+    <div *ngIf="data">
+        <div class="flex justify-center items-center">
+            <div>
+                <select (change)="sorting($event)"
+                    class="block w-[10rem] p-2 bg-slate-100 cursor-pointer mt-1 border-black dark:border-gray-700 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <option>Sort by</option>
+                    <option value="price">Price</option>
+                    <option value="name">Name</option>
+                    <option value="date">Date created</option>
+                </select>
+            </div>
+        </div>
+        <div class="flex justify-center items-center">
+            <div>
+                <select (change)="paging($event)"
+                    class="block w-[10rem] p-2 bg-slate-100 cursor-pointer mt-1 border-black dark:border-gray-700 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    <option>Per Page</option>
+                    <option [value]="2">2</option>
+                    <option [value]="3">3</option>
+                    <option [value]="5">5</option>
+                    <option [value]="10">10</option>
+                    <option [value]="15">15</option>
+                </select>
+            </div>
+        </div>
+        <!-- <button>
+            name
+        </button>
+        <button>
+            price
+        </button>
+        <button>
+            date
+        </button> -->
+    </div>
+    <div *ngIf="data" class="overflow-x-auto relative shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="py-3 px-6 text-md">
+                        Product Preview
+                    </th>
+                    <th scope="col" class="py-3 px-6 text-md">
+                        Product name
+                    </th>
+                    <th scope="col" class="py-3 px-6 text-md">
+                        Product short code
+                    </th>
+                    <th scope="col" class="py-3 px-6 text-md">
+                        Description
+                    </th>
+                    <th scope="col" class="py-3 px-6 text-md">
+                        Category
+                    </th>
+                    <th scope="col" class="py-3 px-6 text-md">
+                        Price
+                    </th>
+                    <th scope="col" class="py-3 px-6 text-md">
+                        Origin
+                    </th>
+                    <th scope="col" class="py-3 px-6 text-md">
+                        Created Date
+                    </th>
+                    <th scope="col" class="py-3 px-6 text-md">
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let item of data">
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <td class="py-4 px-6">
+                        <img src={{item.imageURL}} height="60" width="70" alt="">
+                    </td>
+                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{item.productName}}
+                    </th>
+                    <td class="py-4 px-6">
+                        {{item.productShortCode}}
+                    </td>
+                    <td class="py-4 px-6">
+                        {{item.description}}
+                    </td>
+                    <td class="py-4 px-6">
+                        {{item.category}}
+                    </td>
+                    <td class="py-4 px-6">
+                        {{item.price | currency: 'USD': 'symbol'}}
+                    </td>
+                    <td class="py-4 px-6">
+                        {{ item.origin }}
+                    </td>
+                    <td class="py-4 px-6">
+                        {{item.createdAt | date: 'dd-MM-yyyy' }}
+                    </td>
+                    <td class="py-4 px-6 space-x-6">
+                        <button routerLink="/products/edit/{{item._id}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+                        <button [disabled]="deleteCondition(item._id)" (click)="delete(item._id)" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="flex space-x-10 justify-center items-center">
+        <button (click)="dec()"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full flex items-center justify-center">
+            <mat-icon>arrow_backward</mat-icon>
+        </button>
+        <p>page {{page+1}}</p>
+        <button (click)="inc()"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full flex items-center justify-center">
+            <mat-icon>arrow_forward</mat-icon>
+        </button>
+    </div>
+    <div *ngIf="data" class="flex justify-center items-center">
+        <a routerLink="/products/create">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-2 rounded">
+                Add new product
+            </button>
+        </a>
+    </div>

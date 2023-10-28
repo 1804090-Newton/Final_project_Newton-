@@ -1,0 +1,19 @@
+<!-- navbar.component.html -->
+
+<nav class="bg-blue-500 shadow-2xl text-white p-6 flex items-center justify-between">
+    <div class="flex items-center">
+        <a routerLink="/dashboard" class="text-xl">Dashboard</a>
+        <div class="ml-6">
+            <a routerLink="/products" class="px-3 py-2 rounded-md hover:bg-blue-400">products</a>
+        </div>
+    </div>
+    <div class="flex justify-center items-center">
+        <a routerLink="/my-cart" class="p-2 flex rounded-md hover:bg-blue-400">
+                <button mat-raised-button color="primary" matBadgePosition="above after">
+                    <mat-icon style="color: white">shopping_cart</mat-icon> Cart
+                </button>
+        </a>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,30 @@
+<div class="flex justify-center items-center py-20" *ngIf="!data">
+    <img src="../../assets/images/loader.gif" alt="An animated image">
+</div>
+<div class="flex flex-wrap justify-center space-x-10 space-y-10 p-10" *ngIf="data">
+    <div *ngFor="let item of data" 
+        class=" bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <a routerLink="/product/{{item._id}}">
+            <img class="rounded-t-lg h-[15rem] w-[25rem]" src={{item.imageURL}} alt={{item.productName}} />
+        </a>
+        <div class="p-5">
+            <div class="flex justify-between">
+                    <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{item.productName}}</h3>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{item.price | currency: 'USD': 'symbol'}}</p>
+            </div>
+            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{item.description}}</p>
+            <div class="space-x-20">
+                <a routerLink="/product/{{item._id}}"
+                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <button class="bg-blue-700 ">
+                        Detail
+                    </button>
+                </a>
+
+                <button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" routerLink="/my-cart" (click)="addToCart(item)">
+                        Add to cart
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
